@@ -14,8 +14,10 @@ pipeline {
           steps {
             sh 'git submodule update --init --recursive'
             sh 'rm -rf build; mkdir build'
+            sh 'ccache -z'
             sh 'cd build && qmake -r ../qgroundcontrol.pro CONFIG+=installer CONFIG+=WarningsAsErrorsOn'
-            sh 'cd build && make -j2'
+            sh 'cd build && make -j4'
+            sh 'ccache -s'
           }
         }
         stage('Android') {
@@ -29,8 +31,10 @@ pipeline {
           steps {
             sh 'git submodule update --init --recursive'
             sh 'rm -rf build; mkdir build'
+            sh 'ccache -z'
             sh 'cd build && qmake -r ../qgroundcontrol.pro'
-            sh 'cd build && make -j2'
+            sh 'cd build && make -j4'
+            sh 'ccache -s'
           }
         }
         stage('Linux Debug') {
@@ -44,8 +48,10 @@ pipeline {
           steps {
             sh 'git submodule update --init --recursive'
             sh 'rm -rf build; mkdir build'
+            sh 'ccache -z'
             sh 'cd build && qmake -r ../qgroundcontrol.pro CONFIG+=debug CONFIG+=WarningsAsErrorsOn'
-            sh 'cd build && make -j2'
+            sh 'cd build && make -j4'
+            sh 'ccache -s'
             sh 'cd build && ./debug/qgroundcontrol-start.sh --unittest'
           }
         }
