@@ -11,9 +11,9 @@ pipeline {
             
           }
           steps {
-            sh '''mkdir build
-cd build
-qmake ../qgroundcontrol.pro'''
+            sh '''git submodule update --init --recursive
+rm -rf build; mkdir build; cd build
+qmake -r ../qgroundcontrol.pro'''
           }
         }
         stage('Android') {
@@ -24,9 +24,9 @@ qmake ../qgroundcontrol.pro'''
             
           }
           steps {
-            sh '''mkdir build
-cd build
-qmake ../qgroundcontrol.pro'''
+            sh '''git submodule update --init --recursive
+rm -rf build; mkdir build; cd build
+qmake -r ../qgroundcontrol.pro'''
           }
         }
       }
