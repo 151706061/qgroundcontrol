@@ -20,7 +20,7 @@ pipeline {
         stage('Android') {
           agent {
             docker {
-              image 'mavlink/qgc-build-android'
+              image 'mavlink/qgc-build-android:2017-12-29'
             }
             
           }
