@@ -7,6 +7,7 @@ pipeline {
           agent {
             docker {
               image 'mavlink/qgc-build-linux'
+              args '-e CCACHE_BASEDIR=$WORKSPACE -e CCACHE_DIR=/tmp/ccache -v /tmp/ccache:/tmp/ccache:rw'
             }
             
           }
@@ -21,6 +22,7 @@ pipeline {
           agent {
             docker {
               image 'mavlink/qgc-build-android:2017-12-29'
+              args '-e CCACHE_BASEDIR=$WORKSPACE -e CCACHE_DIR=/tmp/ccache -v /tmp/ccache:/tmp/ccache:rw'
             }
             
           }
@@ -35,6 +37,7 @@ pipeline {
           agent {
             docker {
               image 'mavlink/qgc-build-linux'
+              args '-e CCACHE_BASEDIR=$WORKSPACE -e CCACHE_DIR=/tmp/ccache -v /tmp/ccache:/tmp/ccache:rw'
             }
             
           }
