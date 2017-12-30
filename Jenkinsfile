@@ -11,9 +11,10 @@ pipeline {
             
           }
           steps {
-            sh '''git submodule update --init --recursive
-rm -rf build; mkdir build; cd build
-qmake -r ../qgroundcontrol.pro CONFIG+=installer CONFIG+=WarningsAsErrorsOn'''
+            sh 'git submodule update --init --recursive'
+            sh 'rm -rf build; mkdir build; cd build'
+            sh 'qmake -r ../qgroundcontrol.pro CONFIG+=installer CONFIG+=WarningsAsErrorsOn'
+            sh 'make -j2'
           }
         }
         stage('Android') {
@@ -24,9 +25,10 @@ qmake -r ../qgroundcontrol.pro CONFIG+=installer CONFIG+=WarningsAsErrorsOn'''
             
           }
           steps {
-            sh '''git submodule update --init --recursive
-rm -rf build; mkdir build; cd build
-qmake -r ../qgroundcontrol.pro'''
+            sh 'git submodule update --init --recursive'
+            sh 'rm -rf build; mkdir build; cd build'
+            sh 'qmake -r ../qgroundcontrol.pro'
+            sh 'make -j2'
           }
         }
         stage('Linux Debug') {
@@ -37,9 +39,10 @@ qmake -r ../qgroundcontrol.pro'''
             
           }
           steps {
-            sh '''git submodule update --init --recursive
-rm -rf build; mkdir build; cd build
-qmake -r ../qgroundcontrol.pro CONFIG+=debug CONFIG+=WarningsAsErrorsOn'''
+            sh 'git submodule update --init --recursive'
+            sh 'rm -rf build; mkdir build; cd build'
+            sh 'qmake -r ../qgroundcontrol.pro CONFIG+=debug CONFIG+=WarningsAsErrorsOn'
+            sh 'make -j2'
             sh './debug/qgroundcontrol-start.sh --unittest'
           }
         }
