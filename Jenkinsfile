@@ -41,7 +41,7 @@ pipeline {
           steps {
             sh 'git submodule update --init --recursive'
             sh 'rm -rf build; mkdir build'
-            sh 'qmake -r ../qgroundcontrol.pro CONFIG+=debug CONFIG+=WarningsAsErrorsOn'
+            sh 'cd build && qmake -r ../qgroundcontrol.pro CONFIG+=debug CONFIG+=WarningsAsErrorsOn'
             sh 'cd build && make -j2'
             sh 'cd build && ./debug/qgroundcontrol-start.sh --unittest'
           }
